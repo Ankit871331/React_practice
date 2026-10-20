@@ -1,0 +1,10 @@
+nav bar done 
+States
+
+
+========================================= Props ===========================================
+- components
+-object destrecturing 
+-optional chaning 
+-fall back url
+-array methods
