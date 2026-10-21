@@ -3,7 +3,7 @@
 -optional chaning 
 -fall back url
 -array methods
-
+-swiper js webisite
 
 
 ========================================= Props ===========================================
@@ -24,7 +24,16 @@
 
 
 
--Destructuring Props =Instead of writing props.name, props.age everywhere, destructure:
+-Destructuring Props =  Destructing is a js properities that let us pull the data from object in one line.
+
+                        -Instead of writing props.name, props.age everywhere, destructure:
+                        -There are two ways of Destructuring 
+                                        a. inside function body :
+                                                        function Card(props) {
+                                                        const { name, role, city } = props;   // ← unpack the box once
+
+                                        b. in the paremeter of fucntion:
+                                                function Card({ name, role, city }) 
 
             // ❌ Verbose
             function User(props) {
@@ -128,4 +137,5 @@
             age: PropTypes.number,
             };
 
-            
+
+
