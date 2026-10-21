@@ -1,0 +1,141 @@
+- components
+-object destrecturing 
+-optional chaning 
+-fall back url
+-array methods
+-swiper js webisite
+
+
+========================================= Props ===========================================
+
+-Props = Properties. They are data passed from a parent component to a child component.
+
+
+-How to pass props:
+
+        Type	    Syntax
+        String	    name="Rahul"
+        Number	    age={25} ← curly braces
+        Boolean	    isActive={true} or just isActive
+        Variable	name={userName}
+        Object	    user={{ name: "Rahul" }}
+        Array	    hobbies={["coding", "gaming"]}
+        Function	onClick={handleClick}
+
+
+
+-Destructuring Props =  Destructing is a js properities that let us pull the data from object in one line.
+
+                        -Instead of writing props.name, props.age everywhere, destructure:
+                        -There are two ways of Destructuring 
+                                        a. inside function body :
+                                                        function Card(props) {
+                                                        const { name, role, city } = props;   // ← unpack the box once
+
+                                        b. in the paremeter of fucntion:
+                                                function Card({ name, role, city }) 
+
+            // ❌ Verbose
+            function User(props) {
+            return <h2>{props.name} is {props.age}</h2>;
+            }
+
+            // ✅ Destructure in parameter (most common)
+            function User({ name, age }) {
+            return <h2>{name} is {age}</h2>;
+            }
+
+            // ✅ Destructure inside body (also valid)
+            function User(props) {
+            const { name, age } = props;
+            return <h2>{name} is {age}</h2>;
+            }
+
+            
+-Default Props = If a parent doesn't pass a prop, you can set a default value:
+
+            function Button({ text = "Click Me", color = "blue" }) {
+            return <button style={{ color }}>{text}</button>;
+            }
+
+            <Button />                    // Renders: "Click Me" in blue
+            <Button text="Submit" />      // Renders: "Submit" in blue
+            <Button text="Submit" color="red" /> // "Submit" in red
+
+-The children Prop = Everything between opening and closing tags becomes the children prop.
+
+            function Card({ children }) {
+            return <div className="card">{children}</div>;
+            }
+
+            // Usage
+            <Card>
+            <h1>Hello</h1>
+            <p>This is inside the card</p>
+            </Card>
+
+-Props are Read-Only (Immutable) = You cannot modify props inside a child. This is a top interview question.
+
+        function User({ name }) {
+        name = "Hacker"; // ❌ NEVER DO THIS
+        return <h1>{name}</h1>;
+        }
+-Passing Functions as Props = 
+
+                function App() {
+                const handleDelete = (id) => {
+                    console.log("Deleting", id);
+                };
+
+                return <Item id={1} onDelete={handleDelete} />;
+                }
+
+                function Item({ id, onDelete }) {
+                return <button onClick={() => onDelete(id)}>Delete</button>;
+                }
+
+                ⚠️ Don't do this: onClick={onDelete(id)} — this calls immediately during render.
+                ✅ Do this: onClick={() => onDelete(id)} — this calls on click.
+
+
+
+-Prop Drilling = When you pass props through many nested components just to reach a deep child:
+
+
+            <App> → <A user={user} /> → <B user={user} /> → <C user={user} /> → <D user={user} />
+            Problem: Ugly, hard to maintain
+
+            Solutions (know the names): Context API, Redux, Zustand, component composition
+
+            You don't need to master these now — just know the term and why it's a problem.
+
+- Spread Operator with Props = Useful when you have many props or passing down props received by a wrapper.
+
+
+
+
+            const userProps = { name: "Rahul", age: 25, city: "Delhi" };
+
+            <User {...userProps} />
+            // Same as:
+            <User name="Rahul" age={25} city="Delhi" />
+
+
+
+
+-PropTypes = Props are not type-checked by default. prop-types adds runtime warnings:
+
+
+            import PropTypes from "prop-types";
+
+            function User({ name, age }) {
+            return <h2>{name} - {age}</h2>;
+            }
+
+            User.propTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number,
+            };
+
+
+
